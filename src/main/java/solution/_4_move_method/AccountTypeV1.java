@@ -1,5 +1,7 @@
 package solution._4_move_method;
 
+import problem._4_move_method.AccountType;
+
 public class AccountTypeV1 {
     private  boolean premium;
 
@@ -9,15 +11,23 @@ public class AccountTypeV1 {
         this.premium = premium;
     }
 
+    private AccountTypeV1(boolean premium, int daysOverdrawn) {
+        this.premium = premium;
+        this.daysOverdrawn = daysOverdrawn;
+    }
+
     public static AccountTypeV1 from(boolean premium) {
         return new AccountTypeV1(premium);
+    }
+
+    public static AccountTypeV1 of(boolean premium, int daysOverdrawn) {
+        return new AccountTypeV1(premium, daysOverdrawn);
     }
 
     public boolean isPremium() {
         return premium;
     }
 
-    // 1. 이 부분 또한 타겟 클래스로 옮긴다.
     public double overdraftCharge() {
         if (isPremium()) {
             final int baseCharge = 10;
